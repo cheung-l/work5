@@ -1,0 +1,46 @@
+package Test;
+
+
+public class StopWatchTest {
+	
+	public static void main(String[] args) {
+		
+		StopWatch time = new StopWatch();
+		int []nums = new int[100000];
+		for(int i = 0 ; i < nums.length ; i++) {
+			nums[i] = (int)(System.currentTimeMillis()/1000);
+			
+		}
+		time.start();
+		for(int i = 0 ; i < nums.length-1 ; i++) {
+			for(int j = i+1 ; j< nums.length ; j++) {
+				if(nums[i] > nums[j]) {
+					int temp = nums[i];
+					nums[i] = nums[j];
+					nums[j] = temp;
+				}
+			}
+		}
+		time.stop();
+		System.out.println("选择排序所需时间为： " + time.getElapsedTime());
+		
+	}
+
+}
+class StopWatch{
+	private  long startTime;
+	private long endTime;
+	public  StopWatch() {
+		startTime = System.currentTimeMillis();
+	}
+	public void start() {
+		startTime = System.currentTimeMillis();
+	}
+	public void stop() {
+		endTime = System.currentTimeMillis(); 
+	}
+	public long getElapsedTime() {
+		return endTime - startTime;
+	}
+	
+}
