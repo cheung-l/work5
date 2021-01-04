@@ -1,0 +1,46 @@
+package Test;
+
+import java.util.Scanner;
+
+public class Equation {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("请输入参数a，b，c： ");
+		double a = input.nextDouble();
+		double b = input.nextDouble();
+		double c = input.nextDouble();
+		QuadraticEquation eq = new QuadraticEquation(a,b,c);
+		if(eq.d>0) {
+			System.out.println("x1 = " + eq.getRoot1() + ",x2 = " + eq.getRoot2());
+		}
+
+		else if(eq.d == 0) {
+			System.out.println("x1 = x2 = " + eq.getRoot1());
+		}
+		else 
+			System.out.println("The equation has no roots");
+	}
+}
+class QuadraticEquation{
+	private double a,b,c;
+	double d ;
+	public QuadraticEquation(double a,double b,double c) {
+		setnums(a,b,c);
+	}
+	
+	public  void setnums(double a,double b,double c) {
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		d = b*b-4*a*c;
+	}
+	public double getDiscriminatnyt(){
+		return d;
+	}
+	public double getRoot1() {
+		return (-b+Math.sqrt(d))/(2*a);
+	}
+	public double getRoot2() {
+		return (-b-Math.sqrt(d))/(2*a);
+	}
+}
